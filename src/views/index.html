@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.wrapper {
+			width: 900px;
+			padding: 30px;
+			border-radius: 10px;
+			box-shadow: 0 0 15px 1px rgba(0,0,0, 0.5);
+			margin-top: 50px;
+		}
+
+		ul {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+	<h1>This is a socket chat app</h1>
+	<input id="usernameInput" type="text" placeholder="your username">
+
+	<div class="wrapper">
+		<ul id="list">
+		</ul>
+		<input id="messageInput" type="text">
+	</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+	const socket = io()
+
+	messageInput.onkeyup = () => {
+		if(event.keyCode != 13 || !usernameInput.value) return
+
+		socket.emit('new message', { 
+			username: usernameInput.value,
+			message: messageInput.value
+		})
+
+	}
+	
+	socket.on('message', ({ username, message }) => {
+		let li = document.createElement('li')
+
+		li.textContent = username + ': ' + message
+
+		list.append(li)
+	})
+
+</script>
+</body>
+</html>
