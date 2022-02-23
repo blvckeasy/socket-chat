@@ -2,20 +2,17 @@ import express from 'express'
 import path from 'path'
 import { createServer } from 'http'
 import { Server } from 'socket.io'
+import authRouter from './routes/auth.js'
 
 const app = express()
 const httpServer = createServer(app)
 const io = new Server(httpServer)
 
+app.use(express.json())
+app.use('/api', authRouter)
+
 app.get('/', (req, res) => {
   return res.sendFile(path.join(process.cwd(), 'src', 'views', 'index.html'))
-})
-
-app.post('/login', (req, res) => {
-    const { username, password } = req.body
-
-    
-
 })
 
 io.on('connection', socket => {
