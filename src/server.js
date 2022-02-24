@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 })
 
 io.on('connection', socket => {
-  console.log(socket.id)
+  console.log(socket)
 
   socket.on('new message', data => {
     io.emit('message', data)
@@ -38,4 +38,4 @@ io.on('connection', socket => {
   })
 })
 
-httpServer.listen(3000, () => console.log('http://localhost:3000/'))
+httpServer.listen(3000, () => console.log('🚀 Server is running at http://localhost:3000/'))
