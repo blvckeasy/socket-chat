@@ -14,3 +14,14 @@ create table if not exists messages (
   chat_send_time timestamptz default now(),
   message varchar not null
 );
+
+insert into users (username, password, img_url) values ('blvckeasy', 'islom1029', '1029355islom.jpg');
+
+SELECT 
+    id,
+    username,
+    img_url,
+    online
+  FROM users
+  WHERE 
+    username = 'blvckeasy' and password = 'islom1029';

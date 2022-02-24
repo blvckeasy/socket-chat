@@ -1,12 +1,21 @@
-import express from 'express'
-import path from 'path'
+import authRouter from './routes/auth.js'
 import { createServer } from 'http'
 import { Server } from 'socket.io'
-import authRouter from './routes/auth.js'
+import express from 'express'
+import path from 'path'
+import cors from 'cors'
 
 const app = express()
 const httpServer = createServer(app)
 const io = new Server(httpServer)
+
+app.use(
+  cors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+  })
+)
 
 app.use(express.json())
 app.use('/api', authRouter)
@@ -27,4 +36,4 @@ io.on('connection', socket => {
   })
 })
 
-httpServer.listen(3000, () => console.log('http://localhost:3000'))
+httpServer.listen(3000, () => console.log('http://localhost:3000/'))

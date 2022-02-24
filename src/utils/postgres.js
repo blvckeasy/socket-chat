@@ -1,6 +1,7 @@
-import { Pool } from 'pg'
+import pg from 'pg'
+import '../../config.js'
 
-const pool = new Pool({
+const pool = new pg.Pool({
   user: process.env.PG_USER,
   password: process.env.PG_PASSWORD,
   port: process.env.PG_PORT,
@@ -34,7 +35,7 @@ async function fetchAll(query, ...params) {
   }
 }
 
-module.exports = {
+export default {
   fetchAll,
   fetch,
 }
