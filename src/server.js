@@ -16,8 +16,9 @@ app.use(
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
   })
-  )
-  
+)
+
+app.use(express.static(path.join(process.cwd(), 'files')))
 app.use(express.json())
 app.use('/auth', authRouter)
 
