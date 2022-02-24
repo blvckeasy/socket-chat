@@ -9,16 +9,17 @@ const app = express()
 const httpServer = createServer(app)
 const io = new Server(httpServer)
 
+
 app.use(
   cors({
     origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
   })
-)
-
+  )
+  
 app.use(express.json())
-app.use('/api', authRouter)
+app.use('/auth', authRouter)
 
 app.get('/', (req, res) => {
   return res.sendFile(path.join(process.cwd(), 'src', 'views', 'index.html'))

@@ -15,13 +15,4 @@ create table if not exists messages (
   message varchar not null
 );
 
-insert into users (username, password, img_url) values ('blvckeasy', 'islom1029', '1029355islom.jpg');
-
-SELECT 
-    id,
-    username,
-    img_url,
-    online
-  FROM users
-  WHERE 
-    username = 'blvckeasy' and password = 'islom1029';
+insert into users (username, password, img_url) values ('blvckeasy', 'islom1029', '/1029355islom.jpg');
